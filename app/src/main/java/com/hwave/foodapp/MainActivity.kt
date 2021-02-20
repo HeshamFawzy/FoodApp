@@ -46,13 +46,13 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    class FoodAdapter : BaseAdapter {
+    inner class FoodAdapter : BaseAdapter {
         var context: Context? = null
         var listOfFoodsLocal = ArrayList<Food>()
 
         constructor(listOfFoods: ArrayList<Food>, context: Context) {
             listOfFoodsLocal = listOfFoods
-            this.context=context
+            this.context = context
         }
 
         override fun getCount(): Int {
@@ -75,8 +75,21 @@ class MainActivity : AppCompatActivity() {
             foodView.tvName.text = food.name
             foodView.tvDes.text = food.des
             foodView.ivFoodImage.setImageResource(food.image!!)
+            foodView.ivFoodImage.setOnClickListener {
+
+            }
             return foodView
         }
 
+    }
+
+    fun delete(index: Int) {
+        listOfFood.removeAt(index)
+        adapter!!.notifyDataSetChanged()
+    }
+
+    fun add(index: Int) {
+        listOfFood.add(index, listOfFood[index])
+        adapter!!.notifyDataSetChanged()
     }
 }
