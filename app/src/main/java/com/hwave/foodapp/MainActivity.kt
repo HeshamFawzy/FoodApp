@@ -1,6 +1,7 @@
 package com.hwave.foodapp
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -76,7 +77,11 @@ class MainActivity : AppCompatActivity() {
             foodView.tvDes.text = food.des
             foodView.ivFoodImage.setImageResource(food.image!!)
             foodView.ivFoodImage.setOnClickListener {
-
+                val intent = Intent(context, FoodDetails::class.java)
+                intent.putExtra("name", food.name!!)
+                intent.putExtra("des", food.des!!)
+                intent.putExtra("image", food.image!!)
+                context!!.startActivity(intent)
             }
             return foodView
         }
